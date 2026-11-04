@@ -113,3 +113,4 @@ class SiteController extends Controller
         return view('pages.terms');
     }
 }
+

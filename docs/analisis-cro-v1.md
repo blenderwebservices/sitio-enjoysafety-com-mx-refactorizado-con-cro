@@ -137,3 +137,4 @@ El sitio actual sufre de una implementación incompleta sobre una plantilla e-co
    - Cotizador inteligente interactivo y formulario de contacto B2B.
    - Páginas legales: Aviso de Privacidad y Términos y Condiciones.
 5. **Assets y Recursos**: Integración de los logotipos originales descargados de alta resolución y optimización WebP.
+

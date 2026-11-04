@@ -21,3 +21,4 @@ class Testimonial extends Model
         'is_featured' => 'boolean',
     ];
 }
+

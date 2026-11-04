@@ -111,3 +111,4 @@
 - [ ] Formulario de cotización B2B operativo que guarda solicitudes en la base de datos y muestra confirmación instantánea.
 - [ ] Sitio 100% en español de México, con branding profesional, teléfono de México y WhatsApp de contacto.
 - [ ] Documento de entrega walkthrough al finalizar en `docs/YYYY-MM-DD_HH-mm_walkthrough.md`.
+

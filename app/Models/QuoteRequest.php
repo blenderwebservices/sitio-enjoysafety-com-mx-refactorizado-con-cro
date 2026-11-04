@@ -43,3 +43,4 @@ class QuoteRequest extends Model
         };
     }
 }
+
