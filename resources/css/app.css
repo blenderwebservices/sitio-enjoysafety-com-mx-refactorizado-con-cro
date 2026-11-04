@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+@source '../views/**/*.blade.php';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --color-safety-navy: #0b2545;
+    --color-safety-navy-dark: #07192e;
+    --color-safety-amber: #f59e0b;
+    --color-safety-amber-hover: #d97706;
+    --color-safety-orange: #ea580c;
+    --color-safety-emerald: #10b981;
+    --color-safety-slate: #1e293b;
+    --color-safety-bg: #f8fafc;
+}
