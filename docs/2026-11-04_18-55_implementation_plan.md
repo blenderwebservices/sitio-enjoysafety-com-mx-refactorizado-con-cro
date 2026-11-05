@@ -40,3 +40,4 @@
    - Recompilar assets de Vite (`npm run build`).
    - Agregar pruebas en `tests/Feature/SiteTest.php` verificando la presencia del script de inicialización de tema y controles UI.
    - Ejecutar la suite completa con `php artisan test`.
+
