@@ -151,4 +151,20 @@ class SiteTest extends TestCase
         $productsResponse->assertStatus(200);
         $productsResponse->assertSee('Productos');
     }
+
+    public function test_theme_selector_and_fouc_script_are_present(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+        // Verify FOUC prevention script defaulting to 'light'
+        $response->assertSee("localStorage.getItem('theme') || 'light'", false);
+        $response->assertSee("prefers-color-scheme: dark", false);
+
+        // Verify Theme Selector options in the markup
+        $response->assertSee('Claro', false);
+        $response->assertSee('Oscuro', false);
+        $response->assertSee('Sistema', false);
+        $response->assertSee('$store.theme.setTheme', false);
+    }
 }

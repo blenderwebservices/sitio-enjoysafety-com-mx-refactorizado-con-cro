@@ -18,36 +18,36 @@
     </div>
 </div>
 
-<div class="py-16 bg-slate-50">
+<div class="py-16 bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             
             <!-- Left Main Content Column -->
             <div class="lg:col-span-8 space-y-10">
                 <!-- Service Banner/Image -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden p-6 shadow-sm flex items-center justify-center">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden p-6 shadow-sm flex items-center justify-center transition-colors duration-200">
                     <img src="{{ asset($service->image_path) }}" alt="{{ $service->name }}" class="max-h-80 w-auto object-contain">
                 </div>
 
                 <!-- Description -->
-                <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm space-y-4">
-                    <h2 class="text-2xl font-bold text-slate-900">Descripción del Servicio</h2>
-                    <p class="text-slate-700 leading-relaxed text-base whitespace-pre-line">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm space-y-4 transition-colors duration-200">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Descripción del Servicio</h2>
+                    <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-base whitespace-pre-line">
                         {{ $service->description }}
                     </p>
                 </div>
 
                 <!-- Features & Technical Scope -->
                 @if(!empty($service->features))
-                    <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-                        <h2 class="text-2xl font-bold text-slate-900 mb-6">Alcance y Beneficios Clave</h2>
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm transition-colors duration-200">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Alcance y Beneficios Clave</h2>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             @foreach($service->features as $feature)
-                                <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
-                                    <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                                <div class="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-100 dark:border-slate-700/60">
+                                    <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                                         ✓
                                     </div>
-                                    <span class="text-sm font-medium text-slate-800">{{ $feature }}</span>
+                                    <span class="text-sm font-medium text-slate-800 dark:text-slate-200">{{ $feature }}</span>
                                 </div>
                             @endforeach
                         </div>
@@ -56,11 +56,11 @@
 
                 <!-- Target Industries -->
                 @if(!empty($service->target_industries))
-                    <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Sectores Industriales Recomendados</h2>
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm transition-colors duration-200">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Sectores Industriales Recomendados</h2>
                         <div class="flex flex-wrap gap-2">
                             @foreach($service->target_industries as $ind)
-                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-slate-800 text-sm font-semibold border border-slate-200">
+                                <span class="px-3.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-semibold border border-slate-200 dark:border-slate-700">
                                     🏭 {{ $ind }}
                                 </span>
                             @endforeach
@@ -112,11 +112,11 @@
                 </div>
 
                 <!-- Direct Help Card -->
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm transition-colors duration-200">
                     <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Asesoría Inmediata</div>
-                    <div class="text-sm font-bold text-slate-800 mb-2">¿Necesita asistencia técnica telefónica?</div>
-                    <p class="text-xs text-slate-500 mb-4">Nuestros ingenieros de soporte están disponibles de Lunes a Viernes de 8:00 a 18:00 hrs.</p>
-                    <a href="tel:+525541697780" class="block text-center py-2.5 rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-800 font-bold text-xs transition">
+                    <div class="text-sm font-bold text-slate-800 dark:text-slate-100 mb-2">¿Necesita asistencia técnica telefónica?</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Nuestros ingenieros de soporte están disponibles de Lunes a Viernes de 8:00 a 18:00 hrs.</p>
+                    <a href="tel:+525541697780" class="block text-center py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-xs transition">
                         📞 Llamar al +52 55 4169 7780
                     </a>
                 </div>
@@ -127,4 +127,3 @@
 </div>
 
 @endsection
-

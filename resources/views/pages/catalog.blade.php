@@ -15,22 +15,22 @@
     </div>
 </div>
 
-<div class="py-12 bg-slate-50 min-h-screen">
+<div class="py-12 bg-slate-50 dark:bg-slate-950 min-h-screen transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Filter and Search Bar -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm mb-10">
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm mb-10 transition-colors duration-200">
             <form action="{{ route('catalog') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-12 gap-4">
                 <!-- Search text -->
                 <div class="sm:col-span-5">
-                    <label for="search" class="block text-xs font-bold text-slate-500 uppercase mb-1">Buscar por Modelo o Gas</label>
-                    <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Ej. H2S, Blackline G7c, Armourx..." class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    <label for="search" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Buscar por Modelo o Gas</label>
+                    <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Ej. H2S, Blackline G7c, Armourx..." class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
                 </div>
 
                 <!-- Category filter -->
                 <div class="sm:col-span-3">
-                    <label for="category" class="block text-xs font-bold text-slate-500 uppercase mb-1">Categoría</label>
-                    <select name="category" id="category" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    <label for="category" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Categoría</label>
+                    <select name="category" id="category" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
                         <option value="">Todas las categorías</option>
                         @foreach($categories as $cat)
                             <option value="{{ $cat->slug }}" {{ request('category') === $cat->slug ? 'selected' : '' }}>
@@ -42,8 +42,8 @@
 
                 <!-- Brand filter -->
                 <div class="sm:col-span-2">
-                    <label for="brand" class="block text-xs font-bold text-slate-500 uppercase mb-1">Marca</label>
-                    <select name="brand" id="brand" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    <label for="brand" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Marca</label>
+                    <select name="brand" id="brand" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
                         <option value="">Todas</option>
                         @foreach($brands as $b)
                             <option value="{{ $b->slug }}" {{ request('brand') === $b->slug ? 'selected' : '' }}>
@@ -59,7 +59,7 @@
                         Filtrar
                     </button>
                     @if(request()->anyFilled(['search', 'category', 'brand']))
-                        <a href="{{ route('catalog') }}" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition" title="Limpiar filtros">
+                        <a href="{{ route('catalog') }}" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition" title="Limpiar filtros">
                             ✕
                         </a>
                     @endif
@@ -69,26 +69,26 @@
 
         <!-- Products Grid -->
         @if($products->isEmpty())
-            <div class="bg-white p-12 text-center rounded-2xl border border-slate-200">
-                <p class="text-slate-500 text-base">No se encontraron productos con los criterios seleccionados.</p>
+            <div class="bg-white dark:bg-slate-900 p-12 text-center rounded-2xl border border-slate-200 dark:border-slate-800">
+                <p class="text-slate-500 dark:text-slate-400 text-base">No se encontraron productos con los criterios seleccionados.</p>
                 <a href="{{ route('catalog') }}" class="mt-4 inline-block px-5 py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs">Ver todo el catálogo</a>
             </div>
         @else
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($products as $prod)
-                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col justify-between group">
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col justify-between group">
                         <div class="p-6">
                             <!-- Image -->
-                            <div class="h-48 bg-slate-50 rounded-xl overflow-hidden flex items-center justify-center p-4 mb-4">
+                            <div class="h-48 bg-slate-50 dark:bg-slate-800/60 rounded-xl overflow-hidden flex items-center justify-center p-4 mb-4">
                                 <img src="{{ asset($prod->image_path) }}" alt="{{ $prod->name }}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300">
                             </div>
 
                             <div class="flex items-center justify-between text-xs mb-2">
-                                <span class="font-bold text-slate-400 uppercase tracking-wider">{{ $prod->brand->name ?? 'Fabricante' }}</span>
-                                <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium text-[11px]">{{ $prod->category->name ?? 'General' }}</span>
+                                <span class="font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{{ $prod->brand->name ?? 'Fabricante' }}</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-[11px]">{{ $prod->category->name ?? 'General' }}</span>
                             </div>
 
-                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-amber-600 transition line-clamp-2">
+                            <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition line-clamp-2">
                                 {{ $prod->name }}
                             </h2>
 
@@ -96,27 +96,27 @@
                                 <div class="text-[11px] text-slate-400 mt-1">SKU: {{ $prod->sku }}</div>
                             @endif
 
-                            <p class="text-xs text-slate-600 mt-3 line-clamp-3 leading-relaxed">
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-3 line-clamp-3 leading-relaxed">
                                 {{ $prod->short_description }}
                             </p>
 
                             @if(!empty($prod->technical_specs))
-                                <div class="mt-4 bg-slate-50 rounded-lg p-3 space-y-1 text-xs text-slate-600 border border-slate-100">
+                                <div class="mt-4 bg-slate-50 dark:bg-slate-800/80 rounded-lg p-3 space-y-1 text-xs text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-700/60">
                                     @foreach(array_slice($prod->technical_specs, 0, 3) as $key => $val)
-                                        <div><strong class="text-slate-800">{{ $key }}:</strong> {{ $val }}</div>
+                                        <div><strong class="text-slate-800 dark:text-white">{{ $key }}:</strong> {{ $val }}</div>
                                     @endforeach
                                 </div>
                             @endif
                         </div>
 
                         <!-- Card Footer -->
-                        <div class="p-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <div class="p-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                             <div>
                                 @if($prod->price)
                                     <div class="text-[10px] text-slate-400 uppercase font-semibold">Precio Referencial</div>
-                                    <div class="text-base font-extrabold text-slate-900">MXN$ {{ number_format($prod->price, 2) }}</div>
+                                    <div class="text-base font-extrabold text-slate-900 dark:text-white">MXN$ {{ number_format($prod->price, 2) }}</div>
                                 @else
-                                    <span class="inline-flex items-center text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">
+                                    <span class="inline-flex items-center text-xs font-semibold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded">
                                         Cotización por Proyecto
                                     </span>
                                 @endif
@@ -139,4 +139,3 @@
 </div>
 
 @endsection
-

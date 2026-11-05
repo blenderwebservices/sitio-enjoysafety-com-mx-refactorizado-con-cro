@@ -14,9 +14,22 @@
     <meta property="og:description" content="Especialistas en detección de gas, renta de detectores conectados, calibración ISO 17025 y óptica móvil en México.">
     <meta property="og:image" content="{{ asset('images/logo.png') }}">
 
+    <!-- Script de Inicialización de Tema FOUC Prevention (Claro por default, Oscuro, Sistema) -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const isDark = savedTheme === 'dark' || (savedTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen" x-data="{ mobileMenuOpen: false }">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased flex flex-col min-h-screen transition-colors duration-200" x-data="{ mobileMenuOpen: false }">
 
     <!-- Top Announcement Bar (CRO: Urgencia, Confianza y Contacto Directo) -->
     <div class="bg-slate-900 text-slate-300 text-xs sm:text-sm py-2 px-4 border-b border-slate-800">
@@ -48,96 +61,155 @@
     </div>
 
     <!-- Main Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+    <header class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Brand Logo -->
                 <div class="flex items-center gap-3">
                     <a href="{{ route('home') }}" class="flex items-center gap-2 group">
-                        <img src="{{ asset('images/logo.png') }}" alt="Enjoy Safety México" class="h-12 w-auto object-contain">
+                        <img src="{{ asset('images/logo.png') }}" alt="Enjoy Safety México" class="h-12 w-auto object-contain dark:brightness-110">
                     </a>
                 </div>
 
                 <!-- Desktop Navigation Links -->
-                <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-700">
-                    <a href="{{ route('home') }}" class="hover:text-amber-600 transition {{ request()->routeIs('home') ? 'text-amber-600 font-semibold' : '' }}">
+                <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-700 dark:text-slate-300">
+                    <a href="{{ route('home') }}" class="hover:text-amber-600 dark:hover:text-amber-400 transition {{ request()->routeIs('home') ? 'text-amber-600 dark:text-amber-400 font-semibold' : '' }}">
                         Inicio
                     </a>
 
                     <!-- Solutions Dropdown -->
                     <div class="relative" x-data="{ open: false }" @click.outside="open = false" @mouseenter="open = true" @mouseleave="open = false">
-                        <button type="button" class="flex items-center gap-1 hover:text-amber-600 transition py-2" @click="open = !open">
+                        <button type="button" class="flex items-center gap-1 hover:text-amber-600 dark:hover:text-amber-400 transition py-2" @click="open = !open">
                             <span>Soluciones</span>
                             <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </button>
-                        <div x-show="open" x-transition.opacity.duration.200ms class="absolute left-0 mt-1 w-80 bg-white rounded-xl shadow-xl border border-slate-200 py-3 z-50">
-                            <div class="px-4 py-1.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">Enjoy Safety</div>
-                            <a href="{{ route('service.show', 'equipos-deteccion-gases') }}" class="block px-4 py-2 hover:bg-slate-50 text-slate-800 hover:text-amber-600 transition text-sm">
+                        <div x-show="open" x-transition.opacity.duration.200ms class="absolute left-0 mt-1 w-80 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 py-3 z-50">
+                            <div class="px-4 py-1.5 text-xs font-semibold text-slate-400 dark:text-slate-400 uppercase tracking-wider">Enjoy Safety</div>
+                            <a href="{{ route('service.show', 'equipos-deteccion-gases') }}" class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/60 text-slate-800 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm">
                                 <div class="font-semibold">Equipos de Detección de Gases</div>
-                                <div class="text-xs text-slate-500">Portátiles, fijos y detección de flama</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">Portátiles, fijos y detección de flama</div>
                             </a>
-                            <a href="{{ route('service.show', 'renta-detectores-conectados') }}" class="block px-4 py-2 hover:bg-slate-50 text-slate-800 hover:text-amber-600 transition text-sm">
+                            <a href="{{ route('service.show', 'renta-detectores-conectados') }}" class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/60 text-slate-800 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm">
                                 <div class="font-semibold">Renta de Detectores Conectados</div>
-                                <div class="text-xs text-slate-500">Paros de planta y telemetría en vivo</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">Paros de planta y telemetría en vivo</div>
                             </a>
-                            <div class="border-t border-slate-100 my-1"></div>
-                            <div class="px-4 py-1.5 text-xs font-semibold text-emerald-600 uppercase tracking-wider">ES Labs Acreditado</div>
-                            <a href="{{ route('service.show', 'laboratorio-calibracion-iso17025') }}" class="block px-4 py-2 hover:bg-slate-50 text-slate-800 hover:text-emerald-700 transition text-sm">
+                            <div class="border-t border-slate-100 dark:border-slate-700 my-1"></div>
+                            <div class="px-4 py-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">ES Labs Acreditado</div>
+                            <a href="{{ route('service.show', 'laboratorio-calibracion-iso17025') }}" class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/60 text-slate-800 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 transition text-sm">
                                 <div class="font-semibold flex items-center gap-1.5">
                                     Calibración ISO/IEC 17025
-                                    <span class="px-1.5 py-0.5 rounded text-[10px] bg-emerald-100 text-emerald-800 font-bold">Oficial</span>
+                                    <span class="px-1.5 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold">Oficial</span>
                                 </div>
-                                <div class="text-xs text-slate-500">Validez ante STPS y Protección Civil</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">Validez ante STPS y Protección Civil</div>
                             </a>
-                            <div class="border-t border-slate-100 my-1"></div>
-                            <div class="px-4 py-1.5 text-xs font-semibold text-sky-600 uppercase tracking-wider">Enjoy Vision</div>
-                            <a href="{{ route('service.show', 'optica-movil-in-situ') }}" class="block px-4 py-2 hover:bg-slate-50 text-slate-800 hover:text-sky-600 transition text-sm">
+                            <div class="border-t border-slate-100 dark:border-slate-700 my-1"></div>
+                            <div class="px-4 py-1.5 text-xs font-semibold text-sky-600 dark:text-sky-400 uppercase tracking-wider">Enjoy Vision</div>
+                            <a href="{{ route('service.show', 'optica-movil-in-situ') }}" class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/60 text-slate-800 dark:text-slate-200 hover:text-sky-600 dark:hover:text-sky-400 transition text-sm">
                                 <div class="font-semibold">Óptica Móvil In-Situ</div>
-                                <div class="text-xs text-slate-500">Camión clínico de alta tecnología en su empresa</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">Camión clínico de alta tecnología en su empresa</div>
                             </a>
-                            <a href="{{ route('service.show', 'lentes-seguridad-prescripcion') }}" class="block px-4 py-2 hover:bg-slate-50 text-slate-800 hover:text-sky-600 transition text-sm">
+                            <a href="{{ route('service.show', 'lentes-seguridad-prescripcion') }}" class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/60 text-slate-800 dark:text-slate-200 hover:text-sky-600 dark:hover:text-sky-400 transition text-sm">
                                 <div class="font-semibold">Lentes de Seguridad con Prescripción</div>
-                                <div class="text-xs text-slate-500">Armazones certificados Armourx (ANSI Z87.1)</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">Armazones certificados Armourx (ANSI Z87.1)</div>
                             </a>
-                            <a href="{{ route('service.show', 'campanas-salud-visual-empresas') }}" class="block px-4 py-2 hover:bg-slate-50 text-slate-800 hover:text-sky-600 transition text-sm">
+                            <a href="{{ route('service.show', 'campanas-salud-visual-empresas') }}" class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/60 text-slate-800 dark:text-slate-200 hover:text-sky-600 dark:hover:text-sky-400 transition text-sm">
                                 <div class="font-semibold">Campañas de Salud Visual</div>
-                                <div class="text-xs text-slate-500">Evaluaciones periódicas para colaboradores</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">Evaluaciones periódicas para colaboradores</div>
                             </a>
                         </div>
                     </div>
 
-                    <a href="{{ route('service.show', 'laboratorio-calibracion-iso17025') }}" class="hover:text-emerald-600 transition flex items-center gap-1 text-slate-700">
+                    <a href="{{ route('service.show', 'laboratorio-calibracion-iso17025') }}" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition flex items-center gap-1 text-slate-700 dark:text-slate-300">
                         <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                         Laboratorio ISO 17025
                     </a>
 
-                    <a href="{{ route('service.show', 'optica-movil-in-situ') }}" class="hover:text-sky-600 transition">
+                    <a href="{{ route('service.show', 'optica-movil-in-situ') }}" class="hover:text-sky-600 dark:hover:text-sky-400 transition">
                         Óptica Móvil
                     </a>
 
-                    <a href="{{ route('catalog') }}" class="hover:text-amber-600 transition {{ request()->routeIs('catalog') ? 'text-amber-600 font-semibold' : '' }}">
+                    <a href="{{ route('catalog') }}" class="hover:text-amber-600 dark:hover:text-amber-400 transition {{ request()->routeIs('catalog') ? 'text-amber-600 dark:text-amber-400 font-semibold' : '' }}">
                         Catálogo de Equipos
                     </a>
 
-                    <a href="{{ route('contact') }}" class="hover:text-amber-600 transition {{ request()->routeIs('contact') ? 'text-amber-600 font-semibold' : '' }}">
+                    <a href="{{ route('contact') }}" class="hover:text-amber-600 dark:hover:text-amber-400 transition {{ request()->routeIs('contact') ? 'text-amber-600 dark:text-amber-400 font-semibold' : '' }}">
                         Contacto
                     </a>
                 </nav>
 
-                <!-- Desktop CTA Action (CRO: Primary High Contrast Button) -->
+                <!-- Desktop Actions: Theme Selector + Primary CTA Button -->
                 <div class="hidden lg:flex items-center gap-3">
+                    
+                    <!-- THEME SELECTOR DROPDOWN (Claro default, Oscuro, Sistema) -->
+                    <div class="relative" x-data="{ themeOpen: false }">
+                        <button type="button" @click="themeOpen = !themeOpen" @click.outside="themeOpen = false" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-amber-500 dark:hover:text-amber-400 focus:outline-none transition-all flex items-center gap-1.5 text-xs font-semibold" title="Seleccionar tema (Claro, Oscuro, Sistema)">
+                            <!-- Dynamic Icon based on current selection -->
+                            <span class="w-4 h-4 flex items-center justify-center">
+                                <template x-if="$store.theme && $store.theme.current === 'light'">
+                                    <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                                </template>
+                                <template x-if="$store.theme && $store.theme.current === 'dark'">
+                                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                                </template>
+                                <template x-if="$store.theme && $store.theme.current === 'system'">
+                                    <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                </template>
+                            </span>
+                            <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+
+                        <!-- Theme Dropdown Menu -->
+                        <div x-show="themeOpen" x-transition.opacity.duration.150ms class="absolute right-0 mt-2 w-40 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl py-1.5 z-50 text-xs font-medium">
+                            <button type="button" @click="$store.theme.setTheme('light'); themeOpen = false" class="w-full px-3 py-2 flex items-center justify-between text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition" :class="{ 'font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-700/80': $store.theme && $store.theme.current === 'light' }">
+                                <span class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                                    Claro <span class="text-[10px] text-slate-400">(Default)</span>
+                                </span>
+                                <span x-show="$store.theme && $store.theme.current === 'light'" class="text-amber-500 font-bold">✓</span>
+                            </button>
+                            <button type="button" @click="$store.theme.setTheme('dark'); themeOpen = false" class="w-full px-3 py-2 flex items-center justify-between text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition" :class="{ 'font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-700/80': $store.theme && $store.theme.current === 'dark' }">
+                                <span class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                                    Oscuro
+                                </span>
+                                <span x-show="$store.theme && $store.theme.current === 'dark'" class="text-amber-400 font-bold">✓</span>
+                            </button>
+                            <button type="button" @click="$store.theme.setTheme('system'); themeOpen = false" class="w-full px-3 py-2 flex items-center justify-between text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition" :class="{ 'font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-slate-700/80': $store.theme && $store.theme.current === 'system' }">
+                                <span class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                    Sistema
+                                </span>
+                                <span x-show="$store.theme && $store.theme.current === 'system'" class="text-sky-500 font-bold">✓</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Primary High Contrast Button -->
                     <a href="#cotizador-b2b" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-sm shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5">
                         <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
                         Solicitar Cotización B2B
                     </a>
                 </div>
 
-                <!-- Mobile menu button -->
+                <!-- Mobile Header Right Actions -->
                 <div class="lg:hidden flex items-center gap-2">
+                    <!-- Quick Mobile Theme Switcher -->
+                    <button type="button" @click="$store.theme.setTheme($store.theme.current === 'light' ? 'dark' : ($store.theme.current === 'dark' ? 'system' : 'light'))" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" title="Alternar tema">
+                        <template x-if="$store.theme && $store.theme.current === 'light'">
+                            <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </template>
+                        <template x-if="$store.theme && $store.theme.current === 'dark'">
+                            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        </template>
+                        <template x-if="$store.theme && $store.theme.current === 'system'">
+                            <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </template>
+                    </button>
+
                     <a href="#cotizador-b2b" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 text-xs font-bold shadow-sm">
                         Cotizar
                     </a>
-                    <button type="button" @click="mobileMenuOpen = !mobileMenuOpen" class="p-2 rounded-md text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none">
+                    <button type="button" @click="mobileMenuOpen = !mobileMenuOpen" class="p-2 rounded-md text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                     </button>
                 </div>
@@ -145,19 +217,36 @@
         </div>
 
         <!-- Mobile menu panel -->
-        <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
-            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 hover:bg-slate-50">Inicio</a>
+        <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            
+            <!-- Mobile Theme Switcher Bar -->
+            <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-between text-xs font-semibold">
+                <span class="text-slate-500 dark:text-slate-400">Tema Visual:</span>
+                <div class="flex items-center gap-1">
+                    <button type="button" @click="$store.theme.setTheme('light')" class="px-2.5 py-1 rounded-lg transition" :class="$store.theme && $store.theme.current === 'light' ? 'bg-white dark:bg-slate-700 text-amber-600 dark:text-amber-400 shadow-sm font-bold' : 'text-slate-600 dark:text-slate-400'">
+                        ☀️ Claro
+                    </button>
+                    <button type="button" @click="$store.theme.setTheme('dark')" class="px-2.5 py-1 rounded-lg transition" :class="$store.theme && $store.theme.current === 'dark' ? 'bg-white dark:bg-slate-700 text-amber-400 shadow-sm font-bold' : 'text-slate-600 dark:text-slate-400'">
+                        🌙 Oscuro
+                    </button>
+                    <button type="button" @click="$store.theme.setTheme('system')" class="px-2.5 py-1 rounded-lg transition" :class="$store.theme && $store.theme.current === 'system' ? 'bg-white dark:bg-slate-700 text-sky-400 shadow-sm font-bold' : 'text-slate-600 dark:text-slate-400'">
+                        💻 Sistema
+                    </button>
+                </div>
+            </div>
+
+            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">Inicio</a>
             <div class="px-3 py-1 text-xs font-bold text-slate-400 uppercase">Soluciones Industriales</div>
-            <a href="{{ route('service.show', 'equipos-deteccion-gases') }}" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-amber-600">Equipos de Detección</a>
-            <a href="{{ route('service.show', 'renta-detectores-conectados') }}" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-amber-600">Renta de Detectores Conectados</a>
-            <a href="{{ route('service.show', 'laboratorio-calibracion-iso17025') }}" class="block px-3 py-1.5 text-sm text-emerald-700 font-semibold">Laboratorio ISO/IEC 17025 (ES Labs)</a>
-            <a href="{{ route('service.show', 'optica-movil-in-situ') }}" class="block px-3 py-1.5 text-sm text-sky-700 font-semibold">Óptica Móvil Enjoy Vision</a>
-            <a href="{{ route('service.show', 'lentes-seguridad-prescripcion') }}" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-sky-600">Lentes de Seguridad Graduados</a>
-            <a href="{{ route('service.show', 'campanas-salud-visual-empresas') }}" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-sky-600">Campañas de Salud Visual</a>
-            <div class="border-t border-slate-100 pt-2"></div>
-            <a href="{{ route('catalog') }}" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 hover:bg-slate-50">Catálogo de Equipos</a>
-            <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 hover:bg-slate-50">Contacto Corporativo</a>
-            <a href="/admin" class="block px-3 py-2 rounded-md text-base font-medium text-slate-500 hover:bg-slate-50">Portal Administrativo</a>
+            <a href="{{ route('service.show', 'equipos-deteccion-gases') }}" class="block px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-amber-600">Equipos de Detección</a>
+            <a href="{{ route('service.show', 'renta-detectores-conectados') }}" class="block px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-amber-600">Renta de Detectores Conectados</a>
+            <a href="{{ route('service.show', 'laboratorio-calibracion-iso17025') }}" class="block px-3 py-1.5 text-sm text-emerald-700 dark:text-emerald-400 font-semibold">Laboratorio ISO/IEC 17025 (ES Labs)</a>
+            <a href="{{ route('service.show', 'optica-movil-in-situ') }}" class="block px-3 py-1.5 text-sm text-sky-700 dark:text-sky-400 font-semibold">Óptica Móvil Enjoy Vision</a>
+            <a href="{{ route('service.show', 'lentes-seguridad-prescripcion') }}" class="block px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-sky-600">Lentes de Seguridad Graduados</a>
+            <a href="{{ route('service.show', 'campanas-salud-visual-empresas') }}" class="block px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-sky-600">Campañas de Salud Visual</a>
+            <div class="border-t border-slate-100 dark:border-slate-800 pt-2"></div>
+            <a href="{{ route('catalog') }}" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">Catálogo de Equipos</a>
+            <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md text-base font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">Contacto Corporativo</a>
+            <a href="/admin" class="block px-3 py-2 rounded-md text-base font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800">Portal Administrativo</a>
             <a href="#cotizador-b2b" @click="mobileMenuOpen = false" class="block text-center w-full px-4 py-2.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-sm">
                 Solicitar Cotización Inmediata
             </a>

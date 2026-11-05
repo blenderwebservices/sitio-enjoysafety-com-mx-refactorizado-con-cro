@@ -12,41 +12,41 @@
     </div>
 </div>
 
-<div class="py-12 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate max-w-none text-sm leading-relaxed space-y-6 text-slate-700">
+<div class="py-12 bg-white dark:bg-slate-900 transition-colors duration-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate max-w-none text-sm leading-relaxed space-y-6 text-slate-700 dark:text-slate-300">
         
         <p><strong>Última actualización:</strong> 4 de Noviembre de 2026.</p>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">1. Validez de las Cotizaciones</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">1. Validez de las Cotizaciones</h2>
             <p>
                 Todas las cotizaciones emitidas por Enjoy Safety Group tienen una vigencia estándar de 15 a 30 días naturales a partir de su fecha de emisión, salvo que en la propuesta técnica y económica se especifique una vigencia distinta por volatilidad cambiaria o disponibilidad de inventario de importación.
             </p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">2. Servicios de Calibración Acreditada (ES Labs)</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">2. Servicios de Calibración Acreditada (ES Labs)</h2>
             <p>
                 Los servicios de calibración son ejecutados bajo procedimientos técnicos conformes a la norma ISO/IEC 17025. El cliente es responsable de entregar los equipos limpios, libres de contaminantes peligrosos y con los accesorios indispensables (cargadores, adaptadores de calibración) para su procesamiento.
             </p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">3. Renta de Detectores Conectados</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">3. Renta de Detectores Conectados</h2>
             <p>
                 Las unidades en renta se entregan verificadas, calibradas y en óptimo estado funcional. El arrendatario es responsable del buen uso y resguardo del equipo durante el periodo de vigencia del contrato de arrendamiento.
             </p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">4. Campañas con Óptica Móvil (Enjoy Vision)</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">4. Campañas con Óptica Móvil (Enjoy Vision)</h2>
             <p>
                 La coordinación de visitas de la unidad Óptica Móvil se programa con anticipación mínima de 5 días hábiles, garantizando acceso a un punto seguro de estacionamiento dentro de las instalaciones del cliente con espacio suficiente para maniobras.
             </p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">5. Jurisdicción y Leyes Aplicables</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">5. Jurisdicción y Leyes Aplicables</h2>
             <p>
                 Para la interpretación y cumplimiento de cualquier relación contractual o comercial, las partes se someten expresamente a las leyes aplicables de los Estados Unidos Mexicanos y a la competencia de los tribunales correspondientes.
             </p>
@@ -56,4 +56,3 @@
 </div>
 
 @endsection
-

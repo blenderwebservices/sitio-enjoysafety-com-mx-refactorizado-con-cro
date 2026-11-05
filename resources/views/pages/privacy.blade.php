@@ -12,20 +12,20 @@
     </div>
 </div>
 
-<div class="py-12 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate max-w-none text-sm leading-relaxed space-y-6 text-slate-700">
+<div class="py-12 bg-white dark:bg-slate-900 transition-colors duration-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate max-w-none text-sm leading-relaxed space-y-6 text-slate-700 dark:text-slate-300">
         
         <p><strong>Última actualización:</strong> 4 de Noviembre de 2026.</p>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">1. Identidad y Domicilio del Responsable</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">1. Identidad y Domicilio del Responsable</h2>
             <p>
                 <strong>Enjoy Safety Group S.A. de C.V.</strong> (en adelante "Enjoy Safety", "ES Labs" o "Enjoy Vision"), con domicilio corporativo y operaciones en la República Mexicana, es el responsable del tratamiento legítimo, controlado e informado de sus datos personales y corporativos.
             </p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">2. Datos Personales Recabados</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">2. Datos Personales Recabados</h2>
             <p>
                 Para la prestación de nuestros servicios de calibración bajo la norma ISO/IEC 17025, venta y renta de detectores de gas, y servicios de salud visual ocupacional con óptica móvil, recabamos las siguientes categorías de datos:
             </p>
@@ -38,7 +38,7 @@
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">3. Finalidades del Tratamiento</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">3. Finalidades del Tratamiento</h2>
             <p>Los datos recabados serán utilizados para las siguientes finalidades necesarias:</p>
             <ul class="list-disc pl-5 space-y-1">
                 <li>Elaboración y envío formal de cotizaciones técnicas y comerciales B2B.</li>
@@ -50,21 +50,21 @@
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">4. Transferencia de Datos</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">4. Transferencia de Datos</h2>
             <p>
                 Enjoy Safety Group no vende ni transfiere sus datos personales o de su empresa a terceros ajenos a la prestación del servicio, salvo requerimiento expreso de autoridades competentes en cumplimiento de las leyes mexicanas aplicables.
             </p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">5. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">5. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)</h2>
             <p>
-                Usted o su representante legal debidamente acreditado podrán ejercer en cualquier momento sus derechos de Acceso, Rectificación, Cancelación u Oposición (ARCO) dirigiendo una solicitud por escrito al correo electrónico oficial: <a href="mailto:privacidad@enjoysafety.com.mx" class="text-amber-600 underline font-semibold">privacidad@enjoysafety.com.mx</a>.
+                Usted o su representante legal debidamente acreditado podrán ejercer en cualquier momento sus derechos de Acceso, Rectificación, Cancelación u Oposición (ARCO) dirigiendo una solicitud por escrito al correo electrónico oficial: <a href="mailto:privacidad@enjoysafety.com.mx" class="text-amber-600 dark:text-amber-400 underline font-semibold">privacidad@enjoysafety.com.mx</a>.
             </p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-slate-900">6. Modificaciones al Presente Aviso</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">6. Modificaciones al Presente Aviso</h2>
             <p>
                 El presente aviso de privacidad puede sufrir modificaciones derivadas de nuevos requerimientos legales o de nuestras prácticas de operación. Cualquier cambio estará disponible en este mismo apartado en nuestro sitio web.
             </p>
@@ -74,4 +74,3 @@
 </div>
 
 @endsection
-

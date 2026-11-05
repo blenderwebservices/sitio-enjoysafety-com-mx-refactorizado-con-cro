@@ -115,10 +115,10 @@
 <!-- ==========================================
      TRUST BAR: FABRICANTES LÍDERES & MARCAS
      ========================================== -->
-<section class="bg-white py-10 border-b border-slate-200">
+<section class="bg-white dark:bg-slate-900 py-10 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-6">
-            <p class="text-xs font-bold uppercase tracking-widest text-slate-400">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-400">
                 Tecnología de Fabricantes Reconocidos Internacionalmente
             </p>
         </div>
@@ -126,8 +126,8 @@
         <!-- Brand Logos Carousel / Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 items-center">
             @foreach($brands as $brand)
-                <div class="flex items-center justify-center p-3 bg-slate-50 hover:bg-white rounded-xl border border-slate-100 hover:border-slate-300 shadow-sm transition-all duration-200 group h-20">
-                    <img src="{{ asset($brand->logo_path) }}" alt="{{ $brand->name }}" class="max-h-10 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" title="{{ $brand->name }}">
+                <div class="flex items-center justify-center p-3 bg-slate-50 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700/60 shadow-sm transition-all duration-200 group h-20">
+                    <img src="{{ asset($brand->logo_path) }}" alt="{{ $brand->name }}" class="max-h-10 max-w-full object-contain filter grayscale group-hover:grayscale-0 dark:brightness-110 transition-all duration-300" title="{{ $brand->name }}">
                 </div>
             @endforeach
         </div>
@@ -137,59 +137,59 @@
 <!-- ==========================================
      4 CORE VALUE PILLARS (CRO: Confianza y Diferenciación)
      ========================================== -->
-<section class="py-16 bg-slate-50">
+<section class="py-16 bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14">
-            <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">¿Por qué Enjoy Safety Group?</span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+            <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-widest">¿Por qué Enjoy Safety Group?</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-2">
                 Más que equipos, ofrecemos soluciones especializadas de seguridad integral
             </h2>
-            <p class="text-slate-600 mt-3 text-sm sm:text-base">
+            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm sm:text-base">
                 Acompañamos a nuestros clientes desde la selección de equipos hasta su mantenimiento, calibración acreditada, renta y salud ocupacional.
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Pillar 1 -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900">Especialización Técnica</h3>
-                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Especialización Técnica</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                     Ingenieros capacitados por fabricantes directos para levantamientos en campo, especificación de sensores y proyectos clasificados.
                 </p>
             </div>
 
             <!-- Pillar 2 -->
-            <div class="bg-white p-6 rounded-2xl border border-emerald-200 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-emerald-200 dark:border-emerald-900/60 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900">Calibración ISO 17025</h3>
-                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Calibración ISO 17025</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                     Certificados oficiales con trazabilidad metrológica para aprobar sin contratiempos auditorías de la STPS y Protección Civil.
                 </p>
             </div>
 
             <!-- Pillar 3 -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center mb-4">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900">Renta Conectada 24/7</h3>
-                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Renta Conectada 24/7</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                     Flota de detectores con telemetría celular listos para entrega inmediata en paros de planta y proyectos de contratistas.
                 </p>
             </div>
 
             <!-- Pillar 4 -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900">Óptica Móvil In-Situ</h3>
-                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Óptica Móvil In-Situ</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                     Llevamos consultorio oftalmológico automatizado hasta las puertas de su empresa, eliminando ausentismos y traslados.
                 </p>
             </div>
@@ -200,20 +200,20 @@
 <!-- ==========================================
      THE 6 CORE SOLUTIONS GRID
      ========================================== -->
-<section class="py-20 bg-white" id="soluciones">
+<section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-200" id="soluciones">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
-                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Portafolio Integral</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+                <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-widest">Portafolio Integral</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-2">
                     Nuestras Soluciones Especializadas
                 </h2>
-                <p class="text-slate-600 mt-2 text-sm sm:text-base">
+                <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm sm:text-base">
                     Tecnología y servicios diseñados para proteger a las personas y fortalecer la seguridad operativa.
                 </p>
             </div>
             <div class="mt-4 md:mt-0">
-                <a href="#cotizador-b2b" class="inline-flex items-center gap-1.5 text-sm font-bold text-amber-600 hover:text-amber-700 transition">
+                <a href="#cotizador-b2b" class="inline-flex items-center gap-1.5 text-sm font-bold text-amber-600 dark:text-amber-400 hover:text-amber-700 transition">
                     Cotizar paquete industrial integral →
                 </a>
             </div>
@@ -221,9 +221,9 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($services as $svc)
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col group">
+                <div class="bg-white dark:bg-slate-800/90 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-300 flex flex-col group">
                     <!-- Image Header -->
-                    <div class="h-48 bg-slate-100 overflow-hidden relative flex items-center justify-center p-4">
+                    <div class="h-48 bg-slate-100 dark:bg-slate-900/80 overflow-hidden relative flex items-center justify-center p-4">
                         <img src="{{ asset($svc->image_path) }}" alt="{{ $svc->name }}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300">
                         <div class="absolute top-3 left-3">
                             <span class="px-2.5 py-1 rounded-full text-xs font-bold shadow-sm {{ $svc->division === 'ES Labs' ? 'bg-emerald-600 text-white' : ($svc->division === 'Enjoy Vision' ? 'bg-sky-600 text-white' : 'bg-slate-900 text-white') }}">
@@ -235,19 +235,19 @@
                     <!-- Content -->
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-amber-600 transition">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition">
                                 {{ $svc->name }}
                             </h3>
-                            <p class="text-xs font-semibold text-amber-600 mt-1">
+                            <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 mt-1">
                                 {{ $svc->tagline }}
                             </p>
-                            <p class="text-sm text-slate-600 mt-3 line-clamp-3 leading-relaxed">
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-3 leading-relaxed">
                                 {{ $svc->description }}
                             </p>
 
                             <!-- Features bullets -->
                             @if(!empty($svc->features))
-                                <ul class="mt-4 space-y-1.5 text-xs text-slate-700 border-t border-slate-100 pt-3">
+                                <ul class="mt-4 space-y-1.5 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700 pt-3">
                                     @foreach(array_slice($svc->features, 0, 3) as $feat)
                                         <li class="flex items-start gap-1.5">
                                             <span class="text-emerald-500 font-bold mt-0.5">✓</span>
@@ -259,8 +259,8 @@
                         </div>
 
                         <!-- Card CTA -->
-                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                            <a href="{{ route('service.show', $svc->slug) }}" class="text-xs font-bold text-slate-700 hover:text-amber-600 transition">
+                        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                            <a href="{{ route('service.show', $svc->slug) }}" class="text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 transition">
                                 Ver Detalles Técnicos
                             </a>
                             <a href="{{ route('contact') }}?servicio={{ $svc->slug }}" class="px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold shadow-sm transition">
@@ -332,36 +332,36 @@
 <!-- ==========================================
      DEEP DIVE: ENJOY VISION & ÓPTICA MÓVIL
      ========================================== -->
-<section class="py-20 bg-slate-50">
+<section class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-6 order-2 lg:order-1">
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="rounded-2xl overflow-hidden shadow-md bg-white p-2 border border-slate-200">
+                    <div class="rounded-2xl overflow-hidden shadow-md bg-white dark:bg-slate-900 p-2 border border-slate-200 dark:border-slate-800">
                         <img src="{{ asset('images/Camion_Enjoy.webp') }}" alt="Camión Óptica Móvil Enjoy Vision" class="rounded-xl w-full h-48 object-cover">
-                        <div class="p-2 text-center text-xs font-bold text-slate-800">Unidad Móvil Enjoy Vision</div>
+                        <div class="p-2 text-center text-xs font-bold text-slate-800 dark:text-slate-200">Unidad Móvil Enjoy Vision</div>
                     </div>
-                    <div class="rounded-2xl overflow-hidden shadow-md bg-white p-2 border border-slate-200">
+                    <div class="rounded-2xl overflow-hidden shadow-md bg-white dark:bg-slate-900 p-2 border border-slate-200 dark:border-slate-800">
                         <img src="{{ asset('images/Vision-S-700-Visual-10-1-e1668681571435.webp') }}" alt="Equipo Oftalmológico Vision-S 700" class="rounded-xl w-full h-48 object-cover">
-                        <div class="p-2 text-center text-xs font-bold text-slate-800">Tecnología Vision-S 700</div>
+                        <div class="p-2 text-center text-xs font-bold text-slate-800 dark:text-slate-200">Tecnología Vision-S 700</div>
                     </div>
                 </div>
-                <div class="mt-4 bg-sky-50 border border-sky-200 rounded-xl p-4 text-xs text-sky-900 leading-relaxed">
+                <div class="mt-4 bg-sky-50 dark:bg-sky-950/50 border border-sky-200 dark:border-sky-800 rounded-xl p-4 text-xs text-sky-900 dark:text-sky-300 leading-relaxed">
                     💡 <strong>Cero ausentismo laboral:</strong> Al evaluar a su personal directamente en planta durante sus turnos, se ahorran hasta 4 horas por empleado en traslados y citas externas.
                 </div>
             </div>
 
             <div class="lg:col-span-6 order-1 lg:order-2 space-y-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-bold">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-xs font-bold">
                     División Enjoy Vision
                 </div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
                     Óptica Móvil y Lentes de Seguridad Graduados In-Situ
                 </h2>
-                <p class="text-slate-600 text-base leading-relaxed">
+                <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed">
                     Con la <strong>Óptica Móvil Enjoy Vision</strong> llevamos un consultorio oftalmológico climatizado de última generación hasta su parque industrial o planta de manufactura. Realizamos exámenes visuales computarizados y suministramos armazones de seguridad certificados <strong>Armourx (ANSI Z87.1 / NOM-017-STPS)</strong>.
                 </p>
-                <div class="space-y-3 text-sm text-slate-700">
+                <div class="space-y-3 text-sm text-slate-700 dark:text-slate-300">
                     <div class="flex items-center gap-2">
                         <span class="text-sky-500 font-bold">✓</span>
                         <span>Evaluaciones de alta precisión en solo 10-12 minutos por colaborador.</span>
@@ -388,39 +388,39 @@
 <!-- ==========================================
      MERCADOS INDUSTRIALES
      ========================================== -->
-<section class="py-16 bg-white border-t border-slate-200">
+<section class="py-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-12">
-            <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Sectores Atendidos</span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+            <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-widest">Sectores Atendidos</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-2">
                 Experiencia en las Industrias más Exigentes
             </h2>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-center hover:border-amber-400 transition">
+            <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 text-center hover:border-amber-400 transition">
                 <img src="{{ asset('images/markets-oil-and-gas.webp') }}" alt="Petróleo y Gas" class="h-20 w-full object-cover rounded-lg mb-2">
-                <div class="font-bold text-xs text-slate-800">Petróleo y Gas</div>
+                <div class="font-bold text-xs text-slate-800 dark:text-slate-200">Petróleo y Gas</div>
             </div>
-            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-center hover:border-amber-400 transition">
+            <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 text-center hover:border-amber-400 transition">
                 <img src="{{ asset('images/markets-confined-space.webp') }}" alt="Espacios Confinados" class="h-20 w-full object-cover rounded-lg mb-2">
-                <div class="font-bold text-xs text-slate-800">Espacios Confinados</div>
+                <div class="font-bold text-xs text-slate-800 dark:text-slate-200">Espacios Confinados</div>
             </div>
-            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-center hover:border-amber-400 transition">
+            <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 text-center hover:border-amber-400 transition">
                 <img src="{{ asset('images/_Methane_Emissions.webp') }}" alt="Reducción de Metano" class="h-20 w-full object-cover rounded-lg mb-2">
-                <div class="font-bold text-xs text-slate-800">Emisiones de Metano</div>
+                <div class="font-bold text-xs text-slate-800 dark:text-slate-200">Emisiones de Metano</div>
             </div>
-            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-center hover:border-amber-400 transition">
+            <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 text-center hover:border-amber-400 transition">
                 <img src="{{ asset('images/markets-hydrogen-storage.jpeg') }}" alt="Hidrógeno" class="h-20 w-full object-cover rounded-lg mb-2">
-                <div class="font-bold text-xs text-slate-800">Transición a Hidrógeno</div>
+                <div class="font-bold text-xs text-slate-800 dark:text-slate-200">Transición a Hidrógeno</div>
             </div>
-            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-center hover:border-amber-400 transition">
+            <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 text-center hover:border-amber-400 transition">
                 <img src="{{ asset('images/markets-energy.webp') }}" alt="Energía" class="h-20 w-full object-cover rounded-lg mb-2">
-                <div class="font-bold text-xs text-slate-800">Generación de Energía</div>
+                <div class="font-bold text-xs text-slate-800 dark:text-slate-200">Generación de Energía</div>
             </div>
-            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-center hover:border-amber-400 transition">
+            <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 text-center hover:border-amber-400 transition">
                 <img src="{{ asset('images/markets-data-management.webp') }}" alt="Seguridad Conectada" class="h-20 w-full object-cover rounded-lg mb-2">
-                <div class="font-bold text-xs text-slate-800">Seguridad Conectada</div>
+                <div class="font-bold text-xs text-slate-800 dark:text-slate-200">Seguridad Conectada</div>
             </div>
         </div>
     </div>
@@ -429,20 +429,20 @@
 <!-- ==========================================
      CATÁLOGO DESTACADO DE EQUIPOS
      ========================================== -->
-<section class="py-20 bg-slate-50">
+<section class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
-                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Equipamiento Industrial</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+                <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-widest">Equipamiento Industrial</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-2">
                     Catálogo de Detectores, Tubos y Protección Visual
                 </h2>
-                <p class="text-slate-600 mt-2 text-sm">
+                <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
                     Equipos de entrega inmediata con calibración certificada y soporte técnico directo.
                 </p>
             </div>
             <div class="mt-4 md:mt-0">
-                <a href="{{ route('catalog') }}" class="inline-flex items-center gap-1.5 text-sm font-bold text-amber-600 hover:text-amber-700 transition">
+                <a href="{{ route('catalog') }}" class="inline-flex items-center gap-1.5 text-sm font-bold text-amber-600 dark:text-amber-400 hover:text-amber-700 transition">
                     Ver todos los equipos y tubos colorimétricos →
                 </a>
             </div>
@@ -450,38 +450,38 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($featuredProducts as $prod)
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col justify-between">
                     <div class="p-6">
-                        <div class="h-44 bg-slate-50 rounded-xl overflow-hidden flex items-center justify-center p-3 mb-4">
+                        <div class="h-44 bg-slate-50 dark:bg-slate-800/60 rounded-xl overflow-hidden flex items-center justify-center p-3 mb-4">
                             <img src="{{ asset($prod->image_path) }}" alt="{{ $prod->name }}" class="max-h-full max-w-full object-contain">
                         </div>
                         <div class="flex items-center justify-between text-xs mb-2">
-                            <span class="font-semibold text-slate-500 uppercase">{{ $prod->brand->name ?? 'Enjoy Safety' }}</span>
-                            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[11px] font-medium">{{ $prod->category->name ?? 'Equipo' }}</span>
+                            <span class="font-semibold text-slate-500 dark:text-slate-400 uppercase">{{ $prod->brand->name ?? 'Enjoy Safety' }}</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[11px] font-medium">{{ $prod->category->name ?? 'Equipo' }}</span>
                         </div>
-                        <h3 class="text-base font-bold text-slate-900 line-clamp-2">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white line-clamp-2">
                             {{ $prod->name }}
                         </h3>
-                        <p class="text-xs text-slate-500 mt-2 line-clamp-2">
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">
                             {{ $prod->short_description }}
                         </p>
 
                         @if(!empty($prod->technical_specs))
-                            <div class="mt-4 bg-slate-50 rounded-lg p-2.5 space-y-1 text-[11px] text-slate-600">
+                            <div class="mt-4 bg-slate-50 dark:bg-slate-800/80 rounded-lg p-2.5 space-y-1 text-[11px] text-slate-600 dark:text-slate-300">
                                 @foreach(array_slice($prod->technical_specs, 0, 2) as $k => $v)
-                                    <div><strong class="text-slate-800">{{ $k }}:</strong> {{ $v }}</div>
+                                    <div><strong class="text-slate-800 dark:text-white">{{ $k }}:</strong> {{ $v }}</div>
                                 @endforeach
                             </div>
                         @endif
                     </div>
 
-                    <div class="p-6 pt-0 border-t border-slate-100 mt-2 flex items-center justify-between">
+                    <div class="p-6 pt-0 border-t border-slate-100 dark:border-slate-800 mt-2 flex items-center justify-between">
                         <div>
                             @if($prod->price)
                                 <div class="text-[10px] text-slate-400 uppercase font-semibold">Precio Referencial</div>
-                                <div class="text-base font-extrabold text-slate-900">MXN$ {{ number_format($prod->price, 2) }}</div>
+                                <div class="text-base font-extrabold text-slate-900 dark:text-white">MXN$ {{ number_format($prod->price, 2) }}</div>
                             @else
-                                <span class="inline-flex items-center text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">
+                                <span class="inline-flex items-center text-xs font-semibold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded">
                                     Cotización por Lote B2B
                                 </span>
                             @endif
@@ -603,18 +603,18 @@
 <!-- ==========================================
      SOCIAL PROOF & TESTIMONIALS (CRO TRUST)
      ========================================== -->
-<section class="py-20 bg-white">
+<section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14">
-            <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Testimonios Verificados</span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+            <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-widest">Testimonios Verificados</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-2">
                 Lo que Dicen Líderes de Seguridad e Higiene Industrial
             </h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             @foreach($testimonials as $test)
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div class="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
                     <div>
                         <!-- 5 Star Rating -->
                         <div class="flex items-center gap-1 text-amber-400 mb-4">
@@ -622,14 +622,14 @@
                                 <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                             @endfor
                         </div>
-                        <p class="text-sm text-slate-700 italic leading-relaxed">
+                        <p class="text-sm text-slate-700 dark:text-slate-300 italic leading-relaxed">
                             "{{ $test->content }}"
                         </p>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-slate-200">
-                        <div class="font-bold text-slate-900 text-sm">{{ $test->author_name }}</div>
-                        <div class="text-xs text-slate-500">{{ $test->author_title }}</div>
-                        <div class="text-xs font-semibold text-amber-600 mt-0.5">{{ $test->company }} · {{ $test->industry }}</div>
+                    <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="font-bold text-slate-900 dark:text-white text-sm">{{ $test->author_name }}</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400">{{ $test->author_title }}</div>
+                        <div class="text-xs font-semibold text-amber-600 dark:text-amber-400 mt-0.5">{{ $test->company }} · {{ $test->industry }}</div>
                     </div>
                 </div>
             @endforeach
@@ -640,23 +640,23 @@
 <!-- ==========================================
      FAQ SECTION (CRO: Overcoming Objections)
      ========================================== -->
-<section class="py-20 bg-slate-50 border-t border-slate-200" id="faqs">
+<section class="py-20 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-200" id="faqs">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Preguntas Frecuentes</span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+            <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-widest">Preguntas Frecuentes</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-2">
                 Resolvemos sus Dudas Técnicas y Operativas
             </h2>
         </div>
 
         <div class="space-y-4" x-data="{ active: null }">
             @foreach($faqs as $index => $faq)
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm transition">
-                    <button type="button" class="w-full px-6 py-4 text-left font-bold text-sm sm:text-base text-slate-900 hover:text-amber-600 flex items-center justify-between transition" @click="active = (active === {{ $index }} ? null : {{ $index }})">
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm transition">
+                    <button type="button" class="w-full px-6 py-4 text-left font-bold text-sm sm:text-base text-slate-900 dark:text-white hover:text-amber-600 dark:hover:text-amber-400 flex items-center justify-between transition" @click="active = (active === {{ $index }} ? null : {{ $index }})">
                         <span>{{ $faq->question }}</span>
                         <svg class="w-5 h-5 text-slate-400 transition-transform duration-200" :class="{ 'rotate-180': active === {{ $index }} }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div x-show="active === {{ $index }}" x-transition class="px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                    <div x-show="active === {{ $index }}" x-transition class="px-6 pb-5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-3">
                         {{ $faq->answer }}
                     </div>
                 </div>
@@ -666,4 +666,3 @@
 </section>
 
 @endsection
-
