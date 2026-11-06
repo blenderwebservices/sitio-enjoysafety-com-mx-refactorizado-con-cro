@@ -21,11 +21,29 @@ class SiteController extends Controller
             ->where('is_featured', true)
             ->take(6)
             ->get();
-        $services = Service::where('is_active', true)->orderBy('order')->get();
+        $featuredServices = Service::where('is_active', true)
+            ->where('is_featured', true)
+            ->orderBy('order')
+            ->get();
+        $remainingServices = Service::where('is_active', true)
+            ->where('is_featured', false)
+            ->orderBy('order')
+            ->get();
+        $services = Service::where('is_active', true)
+            ->orderByRaw('is_featured DESC, "order" ASC')
+            ->get();
         $faqs = Faq::where('is_active', true)->orderBy('order')->get();
         $testimonials = Testimonial::where('is_featured', true)->get();
 
-        return view('pages.home', compact('brands', 'featuredProducts', 'services', 'faqs', 'testimonials'));
+        return view('pages.home', compact(
+            'brands',
+            'featuredProducts',
+            'featuredServices',
+            'remainingServices',
+            'services',
+            'faqs',
+            'testimonials'
+        ));
     }
 
     public function catalog(Request $request)

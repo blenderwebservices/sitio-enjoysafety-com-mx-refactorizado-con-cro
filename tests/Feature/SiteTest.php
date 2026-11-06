@@ -167,4 +167,30 @@ class SiteTest extends TestCase
         $response->assertSee('Sistema', false);
         $response->assertSee('$store.theme.setTheme', false);
     }
+
+    public function test_featured_services_and_progressive_disclosure(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+
+        // Verify featured badge is displayed
+        $response->assertSee('★ Destacado');
+
+        // Verify featured services are present
+        $response->assertSee('Equipos de Detección de Gases');
+        $response->assertSee('Laboratorio Acreditado ISO/IEC 17025 (ES Labs)');
+        $response->assertSee('Óptica Móvil Enjoy Vision');
+
+        // Verify the progressive disclosure button and remaining section elements
+        $response->assertSee('Ver el resto de los servicios especializados (3 más)');
+        $response->assertSee('Servicios Especializados y Terapias In-Situ');
+        $response->assertSee('x-ref="infiniteSentinel"', false);
+        $response->assertSee('batchSize: 3', false);
+        $response->assertSee('totalRemaining: 3', false);
+
+        // Verify remaining services exist in database with is_featured = false
+        $this->assertEquals(3, Service::where('is_featured', true)->count());
+        $this->assertEquals(3, Service::where('is_featured', false)->count());
+    }
 }

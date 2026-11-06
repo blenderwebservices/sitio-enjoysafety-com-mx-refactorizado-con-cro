@@ -49,6 +49,10 @@ class ServiceResource extends Resource
                         Forms\Components\TextInput::make('order')
                             ->numeric()
                             ->default(0),
+                        Forms\Components\Toggle::make('is_featured')
+                            ->label('Destacado en Portada')
+                            ->helperText('Se mostrará de forma predeterminada en la página de inicio.')
+                            ->default(false),
                         Forms\Components\Toggle::make('is_active')
                             ->label('Activo')
                             ->default(true),
@@ -93,6 +97,9 @@ class ServiceResource extends Resource
                 Tables\Columns\TextColumn::make('order')
                     ->label('Orden')
                     ->sortable(),
+                Tables\Columns\IconColumn::make('is_featured')
+                    ->label('Destacado')
+                    ->boolean(),
                 Tables\Columns\IconColumn::make('is_active')
                     ->label('Activo')
                     ->boolean(),

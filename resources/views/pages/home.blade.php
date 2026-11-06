@@ -198,18 +198,50 @@
 </section>
 
 <!-- ==========================================
-     THE 6 CORE SOLUTIONS GRID
+     CORE SOLUTIONS & SERVICES WITH PROGRESSIVE DISCLOSURE
      ========================================== -->
-<section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-200" id="soluciones">
+<section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-200" id="soluciones"
+         x-data="{
+             expanded: false,
+             visibleCount: 0,
+             batchSize: 3,
+             totalRemaining: {{ $remainingServices->count() }},
+             isLoading: false,
+             revealMore() {
+                 if (!this.expanded) {
+                     this.expanded = true;
+                 }
+                 if (this.visibleCount < this.totalRemaining) {
+                     this.isLoading = true;
+                     setTimeout(() => {
+                         this.visibleCount = Math.min(this.visibleCount + this.batchSize, this.totalRemaining);
+                         this.isLoading = false;
+                     }, 200);
+                 }
+             },
+             init() {
+                 const observer = new IntersectionObserver((entries) => {
+                     if (entries[0].isIntersecting && this.expanded && this.visibleCount < this.totalRemaining && !this.isLoading) {
+                         this.revealMore();
+                     }
+                 }, { rootMargin: '150px' });
+                 
+                 this.$nextTick(() => {
+                     if (this.$refs.infiniteSentinel) {
+                         observer.observe(this.$refs.infiniteSentinel);
+                     }
+                 });
+             }
+         }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
                 <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-widest">Portafolio Integral</span>
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-2">
-                    Nuestras Soluciones Especializadas
+                    Nuestras Soluciones y Servicios Especializados
                 </h2>
                 <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm sm:text-base">
-                    Tecnología y servicios diseñados para proteger a las personas y fortalecer la seguridad operativa.
+                    Tecnología, laboratorio de calibración y salud visual in-situ diseñados para proteger a su personal y blindar su operación.
                 </p>
             </div>
             <div class="mt-4 md:mt-0">
@@ -219,15 +251,19 @@
             </div>
         </div>
 
+        <!-- 1. Featured Services Grid (Top 3 Priority) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach($services as $svc)
-                <div class="bg-white dark:bg-slate-800/90 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-300 flex flex-col group">
+            @foreach($featuredServices as $svc)
+                <div class="bg-white dark:bg-slate-800/90 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-xl hover:border-amber-400/50 dark:hover:border-amber-500/50 transition-all duration-300 flex flex-col group relative">
                     <!-- Image Header -->
                     <div class="h-48 bg-slate-100 dark:bg-slate-900/80 overflow-hidden relative flex items-center justify-center p-4">
                         <img src="{{ asset($svc->image_path) }}" alt="{{ $svc->name }}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute top-3 left-3">
+                        <div class="absolute top-3 left-3 flex items-center gap-2">
                             <span class="px-2.5 py-1 rounded-full text-xs font-bold shadow-sm {{ $svc->division === 'ES Labs' ? 'bg-emerald-600 text-white' : ($svc->division === 'Enjoy Vision' ? 'bg-sky-600 text-white' : 'bg-slate-900 text-white') }}">
                                 {{ $svc->division }}
+                            </span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-slate-950 shadow-sm flex items-center gap-1">
+                                ★ Destacado
                             </span>
                         </div>
                     </div>
@@ -270,6 +306,114 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <!-- 2. Action Button to Reveal the Rest -->
+        <div class="mt-12 text-center" x-show="!expanded" x-transition>
+            <button type="button"
+                    @click="revealMore()"
+                    class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-amber-500 dark:hover:bg-amber-600 text-white dark:text-slate-950 font-bold text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 group cursor-pointer">
+                <span>Ver el resto de los servicios especializados ({{ $remainingServices->count() }} más)</span>
+                <svg class="w-4 h-4 transform group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                Descubre renta de equipos conectados, lentes de seguridad graduados y campañas visuales in-situ.
+            </p>
+        </div>
+
+        <!-- 3. Progressive Infinite Scroll Section for Remaining Services -->
+        <div x-show="expanded" x-cloak class="mt-14 pt-10 border-t border-slate-200 dark:border-slate-800" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span>Servicios Especializados y Terapias In-Situ</span>
+                        <span class="text-xs px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 font-semibold"
+                              x-text="`Mostrando ${Math.min(visibleCount, totalRemaining)} de ${totalRemaining}`"></span>
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        Cargando soluciones en bloques de 3 con desplazamiento continuo
+                    </p>
+                </div>
+                <button type="button"
+                        @click="expanded = false; visibleCount = 0"
+                        class="text-xs font-semibold text-slate-600 hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400 inline-flex items-center gap-1 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+                    <span>Mostrar solo servicios destacados</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($remainingServices as $svc)
+                    <div x-show="{{ $loop->index }} < visibleCount"
+                         x-transition:enter="transition ease-out duration-300"
+                         x-transition:enter-start="opacity-0 scale-95"
+                         x-transition:enter-end="opacity-100 scale-100"
+                         class="bg-white dark:bg-slate-800/90 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-300 flex flex-col group">
+                        <!-- Image Header -->
+                        <div class="h-48 bg-slate-100 dark:bg-slate-900/80 overflow-hidden relative flex items-center justify-center p-4">
+                            <img src="{{ asset($svc->image_path) }}" alt="{{ $svc->name }}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute top-3 left-3">
+                                <span class="px-2.5 py-1 rounded-full text-xs font-bold shadow-sm {{ $svc->division === 'ES Labs' ? 'bg-emerald-600 text-white' : ($svc->division === 'Enjoy Vision' ? 'bg-sky-600 text-white' : 'bg-slate-900 text-white') }}">
+                                    {{ $svc->division }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition">
+                                    {{ $svc->name }}
+                                </h3>
+                                <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 mt-1">
+                                    {{ $svc->tagline }}
+                                </p>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-3 leading-relaxed">
+                                    {{ $svc->description }}
+                                </p>
+
+                                <!-- Features bullets -->
+                                @if(!empty($svc->features))
+                                    <ul class="mt-4 space-y-1.5 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700 pt-3">
+                                        @foreach(array_slice($svc->features, 0, 3) as $feat)
+                                            <li class="flex items-start gap-1.5">
+                                                <span class="text-emerald-500 font-bold mt-0.5">✓</span>
+                                                <span>{{ $feat }}</span>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+
+                            <!-- Card CTA -->
+                            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                                <a href="{{ route('service.show', $svc->slug) }}" class="text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 transition">
+                                    Ver Detalles Técnicos
+                                </a>
+                                <a href="{{ route('contact') }}?servicio={{ $svc->slug }}" class="px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold shadow-sm transition">
+                                    Cotizar Solución
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Infinite Scroll Sentinel & Loading Indicator -->
+            <div x-ref="infiniteSentinel" class="py-8 flex flex-col justify-center items-center">
+                <div x-show="isLoading" class="flex items-center gap-2 text-xs font-semibold text-amber-600 dark:text-amber-400">
+                    <svg class="animate-spin h-5 w-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Cargando servicios adicionales...</span>
+                </div>
+                <div x-show="visibleCount >= totalRemaining && totalRemaining > 0" class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700">
+                    ✓ Has visualizado la totalidad del catálogo de soluciones y servicios ({{ $featuredServices->count() + $remainingServices->count() }} soluciones)
+                </div>
+            </div>
         </div>
     </div>
 </section>

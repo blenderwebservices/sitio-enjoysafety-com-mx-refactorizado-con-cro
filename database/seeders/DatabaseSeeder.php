@@ -369,6 +369,7 @@ class DatabaseSeeder extends Seeder
                 ],
                 'target_industries' => ['Petroquímica', 'Minería', 'Generación de Energía', 'Farmacéutica', 'Manufactura'],
                 'order' => 1,
+                'is_featured' => true,
             ]
         );
 
@@ -389,6 +390,7 @@ class DatabaseSeeder extends Seeder
                 ],
                 'target_industries' => ['Paros de Planta', 'Contratistas Industriales', 'Espacios Confinados', 'Construcción'],
                 'order' => 2,
+                'is_featured' => false,
             ]
         );
 
@@ -409,6 +411,7 @@ class DatabaseSeeder extends Seeder
                 ],
                 'target_industries' => ['Auditorías STPS', 'Plantas Certificadas ISO', 'Laboratorios Químicos', 'Terminales Marítimas'],
                 'order' => 3,
+                'is_featured' => true,
             ]
         );
 
@@ -429,6 +432,7 @@ class DatabaseSeeder extends Seeder
                 ],
                 'target_industries' => ['Líneas de Ensamble', 'Almacenes Logísticos', 'Metalmecánica', 'Centros de Distribución'],
                 'order' => 4,
+                'is_featured' => false,
             ]
         );
 
@@ -449,6 +453,7 @@ class DatabaseSeeder extends Seeder
                 ],
                 'target_industries' => ['Parques Industriales', 'Plantas Automotrices', 'Maquiladoras', 'Complejos Mineros'],
                 'order' => 5,
+                'is_featured' => true,
             ]
         );
 
@@ -469,6 +474,7 @@ class DatabaseSeeder extends Seeder
                 ],
                 'target_industries' => ['Corporativos', 'Empresas Manufactureras', 'Call Centers', 'Empresas de Transporte'],
                 'order' => 6,
+                'is_featured' => false,
             ]
         );
 

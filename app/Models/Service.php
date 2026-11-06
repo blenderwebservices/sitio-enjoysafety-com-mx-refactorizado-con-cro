@@ -18,12 +18,14 @@ class Service extends Model
         'features',
         'target_industries',
         'order',
+        'is_featured',
         'is_active',
     ];
 
     protected $casts = [
         'features' => 'array',
         'target_industries' => 'array',
+        'is_featured' => 'boolean',
         'is_active' => 'boolean',
         'order' => 'integer',
     ];
