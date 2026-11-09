@@ -190,7 +190,7 @@
                 </div>
                 <h3 class="text-lg font-bold text-slate-900 dark:text-white">Óptica Móvil In-Situ</h3>
                 <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
-                    Llevamos consultorio oftalmológico automatizado hasta las puertas de su empresa, eliminando ausentismos y traslados.
+                    Llevamos consultorio optométrico automatizado hasta las puertas de su empresa, eliminando ausentismos y traslados.
                 </p>
             </div>
         </div>
@@ -486,7 +486,7 @@
                         <div class="p-2 text-center text-xs font-bold text-slate-800 dark:text-slate-200">Unidad Móvil Enjoy Vision</div>
                     </div>
                     <div class="rounded-2xl overflow-hidden shadow-md bg-white dark:bg-slate-900 p-2 border border-slate-200 dark:border-slate-800">
-                        <img src="{{ asset('images/Vision-S-700-Visual-10-1-e1668681571435.webp') }}" alt="Equipo Oftalmológico Vision-S 700" class="rounded-xl w-full h-48 object-cover">
+                        <img src="{{ asset('images/Vision-S-700-Visual-10-1-e1668681571435.webp') }}" alt="Equipo Optométrico Vision-S 700" class="rounded-xl w-full h-48 object-cover">
                         <div class="p-2 text-center text-xs font-bold text-slate-800 dark:text-slate-200">Tecnología Vision-S 700</div>
                     </div>
                 </div>
@@ -503,7 +503,7 @@
                     Óptica Móvil y Lentes de Seguridad Graduados In-Situ
                 </h2>
                 <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed">
-                    Con la <strong>Óptica Móvil Enjoy Vision</strong> llevamos un consultorio oftalmológico climatizado de última generación hasta su parque industrial o planta de manufactura. Realizamos exámenes visuales computarizados y suministramos armazones de seguridad certificados <strong>Armourx (ANSI Z87.1 / NOM-017-STPS)</strong>.
+                    Con la <strong>Óptica Móvil Enjoy Vision</strong> llevamos un consultorio optométrico climatizado de última generación hasta su parque industrial o planta de manufactura. Realizamos exámenes visuales computarizados y suministramos armazones de seguridad certificados <strong>Armourx (ANSI Z87.1 / NOM-017-STPS)</strong>.
                 </p>
                 <div class="space-y-3 text-sm text-slate-700 dark:text-slate-300">
                     <div class="flex items-center gap-2">
