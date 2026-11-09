@@ -4,20 +4,27 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\QuoteRequestResource\Pages;
 use App\Models\QuoteRequest;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class QuoteRequestResource extends Resource
 {
     protected static ?string $model = QuoteRequest::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-inbox-arrow-down';
+
     protected static ?string $navigationGroup = 'Gestión Comercial';
+
     protected static ?string $modelLabel = 'Cotización B2B';
+
     protected static ?string $pluralModelLabel = 'Solicitudes de Cotización';
+
     protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
@@ -69,17 +76,82 @@ class QuoteRequestResource extends Resource
                             ->required(),
                     ]),
 
-                Forms\Components\Section::make('Detalles del Proyecto y Notas')
+                Forms\Components\Section::make('Detalles del Requerimiento')
                     ->schema([
                         Forms\Components\TextInput::make('equipment_interest')
                             ->label('Equipos o Cantidad de Interés'),
                         Forms\Components\Textarea::make('details')
                             ->label('Mensaje / Requerimiento del Cliente')
-                            ->rows(4),
-                        Forms\Components\Textarea::make('notes')
-                            ->label('Notas Internas de Seguimiento Comercial')
-                            ->placeholder('Ej. Se cotizó con flete a Monterrey. Próxima llamada el jueves.')
                             ->rows(3),
+                    ]),
+
+                Forms\Components\Section::make('Seguimiento Comercial (Líneas CRM)')
+                    ->description('Historial acumulativo de anotaciones, llamadas, correos y acuerdos sobre esta cotización.')
+                    ->schema([
+                        Forms\Components\Repeater::make('notes')
+                            ->relationship('notes')
+                            ->label('Líneas de Interacción CRM')
+                            ->addActionLabel('+ Agregar Anotación / Interacción CRM')
+                            ->defaultItems(0)
+                            ->reorderable(false)
+                            ->collapsible()
+                            ->collapsed(false)
+                            ->itemLabel(function (array $state): ?string {
+                                $typeLabel = match ($state['interaction_type'] ?? 'nota') {
+                                    'llamada' => '📞 Llamada',
+                                    'correo' => '✉️ Correo',
+                                    'whatsapp' => '💬 WhatsApp',
+                                    'reunion' => '🤝 Reunión',
+                                    'cotizacion' => '📄 Cotización',
+                                    default => '📝 Nota',
+                                };
+                                $author = ! empty($state['author_name']) ? $state['author_name'] : (Auth::user()?->name ?? 'Asesor');
+                                $date = ! empty($state['created_at'])
+                                    ? Carbon::parse($state['created_at'])->format('d/m/Y H:i')
+                                    : now()->format('d/m/Y H:i');
+                                $preview = ! empty($state['content']) ? ' — '.Str::limit($state['content'], 45) : '';
+
+                                return "{$date} • {$author} • {$typeLabel}{$preview}";
+                            })
+                            ->schema([
+                                Forms\Components\Grid::make(3)
+                                    ->schema([
+                                        Forms\Components\Select::make('interaction_type')
+                                            ->label('Tipo de Interacción')
+                                            ->options([
+                                                'nota' => '📝 Nota Interna',
+                                                'llamada' => '📞 Llamada Telefónica',
+                                                'correo' => '✉️ Correo Electrónico',
+                                                'whatsapp' => '💬 WhatsApp Comercial',
+                                                'reunion' => '🤝 Reunión / Visita Técnica',
+                                                'cotizacion' => '📄 Envío de Cotización',
+                                            ])
+                                            ->default('nota')
+                                            ->required(),
+
+                                        Forms\Components\TextInput::make('author_name')
+                                            ->label('Registrado por')
+                                            ->default(fn () => Auth::user()?->name ?? 'Director de Operaciones')
+                                            ->required()
+                                            ->readOnly(),
+
+                                        Forms\Components\DateTimePicker::make('created_at')
+                                            ->label('Fecha y Hora')
+                                            ->default(now())
+                                            ->displayFormat('d/m/Y H:i')
+                                            ->readOnly(),
+                                    ]),
+
+                                Forms\Components\Textarea::make('content')
+                                    ->label('Anotación / Detalle de la Interacción')
+                                    ->placeholder('Escriba el resultado de la llamada, acuerdo, dudas técnicas o próximos pasos...')
+                                    ->required()
+                                    ->rows(2)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\Hidden::make('user_id')
+                                    ->default(fn () => Auth::id()),
+                            ]),
                     ]),
             ]);
     }
@@ -135,6 +207,12 @@ class QuoteRequestResource extends Resource
                         'archivado' => 'Archivado',
                         default => $state,
                     }),
+                Tables\Columns\TextColumn::make('notes_count')
+                    ->counts('notes')
+                    ->label('Interacciones')
+                    ->badge()
+                    ->color('info')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('phone')
                     ->label('Teléfono')
                     ->searchable(),

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Product;
 use App\Models\QuoteRequest;
+use App\Models\QuoteRequestNote;
 use App\Models\Service;
 use App\Models\Testimonial;
 use App\Models\User;
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // 1. Super Admin
-        User::firstOrCreate(
+        $admin = User::firstOrCreate(
             ['email' => 'admin@enjoysafety.com.mx'],
             [
                 'name' => 'Director de Operaciones',
@@ -571,7 +572,7 @@ class DatabaseSeeder extends Seeder
         );
 
         // 8. Sample Quote Requests
-        QuoteRequest::firstOrCreate(
+        $quote1 = QuoteRequest::firstOrCreate(
             ['folio' => 'RFQ-20261104-001'],
             [
                 'full_name' => 'Carlos Mendoza Díaz',
@@ -583,11 +584,36 @@ class DatabaseSeeder extends Seeder
                 'equipment_interest' => '15 detectores portátiles cuatrogás con telemetría celular',
                 'details' => 'Requerimos renta por 45 días para trabajos en espacios confinados en tanque de almacenamiento durante paro de planta programado para diciembre.',
                 'status' => 'en_cotizacion',
-                'notes' => 'Se envió propuesta técnica de Blackline G7c. Pendiente validación de fechas de entrega en Tampico.',
             ]
         );
 
-        QuoteRequest::firstOrCreate(
+        QuoteRequestNote::firstOrCreate(
+            [
+                'quote_request_id' => $quote1->id,
+                'content' => 'Se envió propuesta técnica de Blackline G7c. Pendiente validación de fechas de entrega en Tampico.',
+            ],
+            [
+                'user_id' => $admin->id,
+                'author_name' => $admin->name,
+                'interaction_type' => 'correo',
+                'created_at' => now()->subDays(2),
+            ]
+        );
+
+        QuoteRequestNote::firstOrCreate(
+            [
+                'quote_request_id' => $quote1->id,
+                'content' => 'Llamada de seguimiento con Ing. Mendoza. Confirman recepción de propuesta y solicitan tiempos de entrega en Tampico.',
+            ],
+            [
+                'user_id' => $admin->id,
+                'author_name' => $admin->name,
+                'interaction_type' => 'llamada',
+                'created_at' => now()->subDay(),
+            ]
+        );
+
+        $quote2 = QuoteRequest::firstOrCreate(
             ['folio' => 'RFQ-20261104-002'],
             [
                 'full_name' => 'Mariana Estrada',
@@ -599,7 +625,19 @@ class DatabaseSeeder extends Seeder
                 'equipment_interest' => 'Campaña con Óptica Móvil para 180 colaboradores',
                 'details' => 'Buscamos evaluar a todo el personal operativo de planta y suministrar lentes de seguridad graduados con armazón certificado.',
                 'status' => 'contactado',
-                'notes' => 'Se agendó llamada para coordinar visita de la Óptica Móvil en Ramos Arizpe.',
+            ]
+        );
+
+        QuoteRequestNote::firstOrCreate(
+            [
+                'quote_request_id' => $quote2->id,
+                'content' => 'Se agendó llamada para coordinar visita de la Óptica Móvil en Ramos Arizpe.',
+            ],
+            [
+                'user_id' => $admin->id,
+                'author_name' => $admin->name,
+                'interaction_type' => 'llamada',
+                'created_at' => now()->subDays(3),
             ]
         );
     }

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Filament\Resources\ProductResource\Pages\EditProduct;
+use App\Filament\Resources\QuoteRequestResource\Pages\EditQuoteRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\QuoteRequest;
@@ -254,5 +255,48 @@ class SiteTest extends TestCase
             ->assertSee('2 / 7')
             ->call('navigateToPreviousRecord')
             ->assertRedirect('/admin/products/1/edit');
+    }
+
+    public function test_quote_request_crm_interaction_lines_accumulate_and_display(): void
+    {
+        $admin = User::where('email', 'admin@enjoysafety.com.mx')->first();
+        $this->actingAs($admin);
+
+        // 1. Visit QuoteRequest edit page and verify CRM section and interaction repeater are present
+        $response = $this->get('/admin/quote-requests/1/edit');
+        $response->assertStatus(200);
+        $response->assertSee('Seguimiento Comercial (Líneas CRM)');
+        $response->assertSee('Agregar Anotación / Interacción CRM');
+
+        // 2. Add a new CRM interaction line via Livewire component
+        $component = Livewire::actingAs($admin)
+            ->test(EditQuoteRequest::class, ['record' => 1])
+            ->assertSuccessful();
+
+        $data = $component->get('data');
+        $notes = $data['notes'] ?? [];
+        $initialNotesCount = count($notes);
+
+        $notes[] = [
+            'interaction_type' => 'llamada',
+            'author_name' => $admin->name,
+            'created_at' => now()->toDateTimeString(),
+            'content' => 'Llamada telefónica con el cliente para confirmar fechas de paro técnico.',
+            'user_id' => $admin->id,
+        ];
+
+        $component->set('data.notes', $notes);
+        $component->call('save');
+
+        // 3. Verify in database that the new interaction note was accumulated
+        $this->assertDatabaseHas('quote_request_notes', [
+            'quote_request_id' => 1,
+            'interaction_type' => 'llamada',
+            'author_name' => $admin->name,
+            'content' => 'Llamada telefónica con el cliente para confirmar fechas de paro técnico.',
+        ]);
+
+        $quote = QuoteRequest::with('notes')->find(1);
+        $this->assertCount($initialNotesCount + 1, $quote->notes);
     }
 }

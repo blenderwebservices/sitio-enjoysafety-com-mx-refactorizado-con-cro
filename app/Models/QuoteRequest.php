@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class QuoteRequest extends Model
 {
@@ -17,7 +18,6 @@ class QuoteRequest extends Model
         'equipment_interest',
         'details',
         'status',
-        'notes',
     ];
 
     public static function boot()
@@ -25,9 +25,14 @@ class QuoteRequest extends Model
         parent::boot();
         static::creating(function ($quote) {
             if (empty($quote->folio)) {
-                $quote->folio = 'RFQ-' . date('Ymd') . '-' . strtoupper(substr(uniqid(), -4));
+                $quote->folio = 'RFQ-'.date('Ymd').'-'.strtoupper(substr(uniqid(), -4));
             }
         });
+    }
+
+    public function notes(): HasMany
+    {
+        return $this->hasMany(QuoteRequestNote::class)->orderBy('created_at', 'asc');
     }
 
     public function getServiceLabelAttribute(): string
@@ -43,4 +48,3 @@ class QuoteRequest extends Model
         };
     }
 }
-
