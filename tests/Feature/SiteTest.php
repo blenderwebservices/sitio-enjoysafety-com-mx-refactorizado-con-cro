@@ -2,12 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\QuoteRequest;
 use App\Models\Service;
 use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class SiteTest extends TestCase
@@ -214,5 +217,42 @@ class SiteTest extends TestCase
         // Verify remaining services exist in database with is_featured = false
         $this->assertEquals(3, Service::where('is_featured', true)->count());
         $this->assertEquals(3, Service::where('is_featured', false)->count());
+    }
+
+    public function test_odoo_style_record_navigation_in_filament(): void
+    {
+        $admin = User::where('email', 'admin@enjoysafety.com.mx')->first();
+        $this->actingAs($admin);
+
+        // 1. Visit product edit page and verify counter & navigation buttons rendered
+        $response = $this->get('/admin/products/1/edit');
+        $response->assertStatus(200);
+        $response->assertSee('1 / 7');
+        $response->assertSee('wire:click="navigateToPreviousRecord"', false);
+        $response->assertSee('wire:click="navigateToNextRecord"', false);
+
+        // 2. Test Livewire navigation and auto-saving of pending changes
+        $product1 = Product::find(1);
+        $originalName = $product1->name;
+
+        Livewire::actingAs($admin)
+            ->test(EditProduct::class, ['record' => 1])
+            ->assertSee('1 / 7')
+            ->set('data.name', 'Nombre Actualizado Odoo Nav')
+            ->call('navigateToNextRecord')
+            ->assertRedirect('/admin/products/2/edit');
+
+        // Verify changes were applied to current record
+        $this->assertEquals('Nombre Actualizado Odoo Nav', Product::find(1)->name);
+
+        // Restore original name
+        Product::find(1)->update(['name' => $originalName]);
+
+        // 3. Test navigation on second record (2 / 7)
+        Livewire::actingAs($admin)
+            ->test(EditProduct::class, ['record' => 2])
+            ->assertSee('2 / 7')
+            ->call('navigateToPreviousRecord')
+            ->assertRedirect('/admin/products/1/edit');
     }
 }
