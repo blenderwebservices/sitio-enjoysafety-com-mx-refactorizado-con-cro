@@ -41,3 +41,4 @@ class QuoteRequestNote extends Model
         };
     }
 }
+
