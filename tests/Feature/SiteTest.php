@@ -2,9 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Brand;
 use App\Models\Category;
-use App\Models\Product;
 use App\Models\QuoteRequest;
 use App\Models\Service;
 use App\Models\User;
@@ -152,6 +150,30 @@ class SiteTest extends TestCase
         $productsResponse->assertSee('Productos');
     }
 
+    public function test_filament_user_crud_and_front_link(): void
+    {
+        $admin = User::where('email', 'admin@enjoysafety.com.mx')->first();
+
+        // Check front links on the admin panel (sidebar navigation and topbar)
+        $adminResponse = $this->actingAs($admin)->get('/admin');
+        $adminResponse->assertStatus(200);
+        $adminResponse->assertSee('Ir al Sitio Web');
+        $adminResponse->assertSee('Ver Sitio Web');
+
+        // Check user CRUD list
+        $usersResponse = $this->actingAs($admin)->get('/admin/users');
+        $usersResponse->assertStatus(200);
+        $usersResponse->assertSee('Usuarios');
+        $usersResponse->assertSee('admin@enjoysafety.com.mx');
+
+        // Check user CRUD create form
+        $createResponse = $this->actingAs($admin)->get('/admin/users/create');
+        $createResponse->assertStatus(200);
+        $createResponse->assertSee('Información del Usuario');
+        $createResponse->assertSee('Nombre Completo');
+        $createResponse->assertSee('Correo Electrónico');
+    }
+
     public function test_theme_selector_and_fouc_script_are_present(): void
     {
         $response = $this->get('/');
@@ -159,7 +181,7 @@ class SiteTest extends TestCase
         $response->assertStatus(200);
         // Verify FOUC prevention script defaulting to 'light'
         $response->assertSee("localStorage.getItem('theme') || 'light'", false);
-        $response->assertSee("prefers-color-scheme: dark", false);
+        $response->assertSee('prefers-color-scheme: dark', false);
 
         // Verify Theme Selector options in the markup
         $response->assertSee('Claro', false);
