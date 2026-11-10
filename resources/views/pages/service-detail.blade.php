@@ -116,8 +116,8 @@
                     <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Asesoría Inmediata</div>
                     <div class="text-sm font-bold text-slate-800 dark:text-slate-100 mb-2">¿Necesita asistencia técnica telefónica?</div>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Nuestros ingenieros de soporte están disponibles de Lunes a Viernes de 8:00 a 18:00 hrs.</p>
-                    <a href="tel:+525541697780" class="block text-center py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-xs transition">
-                        📞 Llamar al +52 55 4169 7780
+                    <a href="tel:{{ $siteSettings->phone1_clean ?? '+525541697780' }}" class="block text-center py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-xs transition">
+                        📞 Llamar al {{ $siteSettings->phone_1 ?? '+52 55 4169 7780' }}
                     </a>
                 </div>
             </div>

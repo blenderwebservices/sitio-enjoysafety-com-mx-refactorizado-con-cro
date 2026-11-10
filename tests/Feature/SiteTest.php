@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Pages\ManageSettings;
 use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Resources\QuoteRequestResource\Pages\EditQuoteRequest;
 use App\Models\Category;
@@ -298,5 +299,41 @@ class SiteTest extends TestCase
 
         $quote = QuoteRequest::with('notes')->find(1);
         $this->assertCount($initialNotesCount + 1, $quote->notes);
+    }
+
+    public function test_site_settings_can_be_managed_and_rendered_on_front(): void
+    {
+        $admin = User::where('email', 'admin@enjoysafety.com.mx')->first();
+
+        // 1. Visit settings page in Filament as admin
+        $response = $this->actingAs($admin)->get('/admin/manage-settings');
+        $response->assertStatus(200);
+        $response->assertSee('Ajustes Generales del Sitio');
+        $response->assertSee('WhatsApp Comercial B2B');
+        $response->assertSee('Teléfonos de Atención Directa');
+
+        // 2. Test saving modified settings via Livewire
+        Livewire::actingAs($admin)
+            ->test(ManageSettings::class)
+            ->set('data.phone_2', '+52 81 8350 9988')
+            ->set('data.logo_height', 54)
+            ->set('data.whatsapp_number', '+52 55 9999 8888')
+            ->call('save')
+            ->assertHasNoErrors();
+
+        // 3. Verify database was updated
+        $this->assertDatabaseHas('settings', [
+            'id' => 1,
+            'phone_2' => '+52 81 8350 9988',
+            'logo_height' => 54,
+            'whatsapp_number' => '+52 55 9999 8888',
+        ]);
+
+        // 4. Verify updated settings appear in frontend views
+        $homeResponse = $this->get('/');
+        $homeResponse->assertStatus(200);
+        $homeResponse->assertSee('+52 81 8350 9988');
+        $homeResponse->assertSee('54px');
+        $homeResponse->assertSee('525599998888');
     }
 }

@@ -26,35 +26,49 @@
                 <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm space-y-6 transition-colors duration-200">
                     <h2 class="text-xl font-bold text-slate-900 dark:text-white">Canales Directos de Atención</h2>
                     
+                    <!-- Direct Phones (CDMX & MTY) -->
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                         </div>
                         <div>
-                            <div class="text-xs font-bold text-slate-400 dark:text-slate-400 uppercase">Atención Telefónica</div>
-                            <a href="tel:+525541697780" class="text-base font-bold text-slate-900 dark:text-white hover:text-amber-600 dark:hover:text-amber-400 transition">+52 55 4169 7780</a>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Lunes a Viernes de 8:00 a 18:00 hrs</p>
+                            <div class="text-xs font-bold text-slate-400 dark:text-slate-400 uppercase">Atención Telefónica Directa</div>
+                            <div class="space-y-1 mt-0.5">
+                                <div>
+                                    <a href="tel:{{ $siteSettings->phone1_clean ?? '+525541697780' }}" class="text-base font-bold text-slate-900 dark:text-white hover:text-amber-600 dark:hover:text-amber-400 transition">{{ $siteSettings->phone_1 ?? '+52 55 4169 7780' }}</a>
+                                    <span class="text-xs text-slate-500 dark:text-slate-400 ms-1">(CDMX / Matriz)</span>
+                                </div>
+                                @if(!empty($siteSettings->phone_2))
+                                    <div>
+                                        <a href="tel:{{ $siteSettings->phone2_clean }}" class="text-base font-bold text-slate-900 dark:text-white hover:text-amber-600 dark:hover:text-amber-400 transition">{{ $siteSettings->phone_2 }}</a>
+                                        <span class="text-xs text-slate-500 dark:text-slate-400 ms-1">(Monterrey / Planta)</span>
+                                    </div>
+                                @endif
+                            </div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{{ $siteSettings->business_hours ?? 'Lunes a Viernes de 8:00 a 18:00 hrs' }}</p>
                         </div>
                     </div>
 
+                    <!-- WhatsApp -->
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
                         </div>
                         <div>
                             <div class="text-xs font-bold text-slate-400 dark:text-slate-400 uppercase">WhatsApp Corporativo</div>
-                            <a href="https://wa.me/525541697780" target="_blank" class="text-base font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 transition">+52 55 4169 7780</a>
+                            <a href="https://wa.me/{{ $siteSettings->whatsapp_clean_number ?? '525541697780' }}?text={{ urlencode($siteSettings->whatsapp_message ?? 'Hola Enjoy Safety, deseo cotizar equipos / calibración para mi empresa.') }}" target="_blank" class="text-base font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 transition">{{ $siteSettings->whatsapp_number ?? '+52 55 4169 7780' }}</a>
                             <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Atención inmediata para urgencias en planta</p>
                         </div>
                     </div>
 
+                    <!-- Email -->
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center flex-shrink-0">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                         </div>
                         <div>
                             <div class="text-xs font-bold text-slate-400 dark:text-slate-400 uppercase">Correo Comercial</div>
-                            <a href="mailto:contacto@enjoysafety.com.mx" class="text-base font-bold text-slate-900 dark:text-white hover:text-amber-600 dark:hover:text-amber-400 transition">contacto@enjoysafety.com.mx</a>
+                            <a href="mailto:{{ $siteSettings->contact_email ?? 'contacto@enjoysafety.com.mx' }}" class="text-base font-bold text-slate-900 dark:text-white hover:text-amber-600 dark:hover:text-amber-400 transition">{{ $siteSettings->contact_email ?? 'contacto@enjoysafety.com.mx' }}</a>
                             <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Envío de bases de licitación y fichas</p>
                         </div>
                     </div>

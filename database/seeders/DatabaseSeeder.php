@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\QuoteRequest;
 use App\Models\QuoteRequestNote;
 use App\Models\Service;
+use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -638,6 +639,29 @@ class DatabaseSeeder extends Seeder
                 'author_name' => $admin->name,
                 'interaction_type' => 'llamada',
                 'created_at' => now()->subDays(3),
+            ]
+        );
+
+        // 9. Site Settings
+        Setting::firstOrCreate(
+            ['id' => 1],
+            [
+                'site_name' => 'Enjoy Safety Group',
+                'site_tagline' => 'Detección de Gases, Calibración ISO 17025 y Salud Visual Industrial',
+                'logo_path' => null,
+                'logo_height' => 48,
+                'whatsapp_number' => '+52 55 4169 7780',
+                'whatsapp_message' => 'Hola Enjoy Safety, deseo cotizar equipos / calibración para mi empresa.',
+                'phone_1' => '+52 55 4169 7780',
+                'phone_2' => '+52 81 8350 9200',
+                'contact_email' => 'contacto@enjoysafety.com.mx',
+                'rfq_recipient_emails' => 'ventas@enjoysafety.com.mx, cotizaciones@enjoysafety.com.mx, direccion@enjoysafety.com.mx',
+                'address' => 'Atención a nivel nacional. Laboratorio y oficinas corporativas en México.',
+                'business_hours' => 'Lunes a Viernes de 8:00 a 18:00 hrs',
+                'response_time_guarantee' => 'Cotización formal en < 2 horas hábiles',
+                'topbar_announcement' => 'Laboratorio Acreditado ISO/IEC 17025 | Tiempos de entrega estándar y servicio exprés 24-48 hrs',
+                'linkedin_url' => 'https://www.linkedin.com/company/enjoy-safety',
+                'facebook_url' => 'https://www.facebook.com/enjoysafety',
             ]
         );
     }

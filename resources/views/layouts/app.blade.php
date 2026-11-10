@@ -40,16 +40,16 @@
                     Laboratorio Acreditado ISO/IEC 17025
                 </span>
                 <span class="hidden md:inline text-slate-400">|</span>
-                <span class="hidden md:inline">Tiempos de entrega estándar y servicio exprés 24-48 hrs</span>
+                <span class="hidden md:inline">{{ $siteSettings->topbar_announcement ?? 'Tiempos de entrega estándar y servicio exprés 24-48 hrs' }}</span>
             </div>
             <div class="flex items-center gap-4 text-xs">
-                <a href="tel:+525541697780" class="hover:text-amber-400 transition flex items-center gap-1 font-semibold text-slate-200">
+                <a href="tel:{{ $siteSettings->phone1_clean ?? '+525541697780' }}" class="hover:text-amber-400 transition flex items-center gap-1 font-semibold text-slate-200">
                     <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
-                    +52 55 4169 7780
+                    {{ $siteSettings->phone_1 ?? '+52 55 4169 7780' }}
                 </a>
                 <span class="text-slate-600">|</span>
-                <a href="mailto:contacto@enjoysafety.com.mx" class="hover:text-amber-400 transition hidden sm:inline">
-                    contacto@enjoysafety.com.mx
+                <a href="mailto:{{ $siteSettings->contact_email ?? 'contacto@enjoysafety.com.mx' }}" class="hover:text-amber-400 transition hidden sm:inline">
+                    {{ $siteSettings->contact_email ?? 'contacto@enjoysafety.com.mx' }}
                 </a>
                 <span class="text-slate-600 hidden sm:inline">|</span>
                 <a href="/admin" class="hover:text-white transition flex items-center gap-1 text-slate-400 hover:text-slate-200">
@@ -67,7 +67,10 @@
                 <!-- Brand Logo -->
                 <div class="flex items-center gap-3">
                     <a href="{{ route('home') }}" class="flex items-center gap-2 group">
-                        <img src="{{ asset('images/logo.png') }}" alt="Enjoy Safety México" class="h-12 w-auto object-contain dark:brightness-110">
+                        <img src="{{ $siteSettings->logo_url ?? asset('images/logo.png') }}"
+                             alt="{{ $siteSettings->site_name ?? 'Enjoy Safety México' }}"
+                             class="w-auto object-contain dark:brightness-110"
+                             style="height: {{ $siteSettings->logo_height ?? 48 }}px;">
                     </a>
                 </div>
 
@@ -274,7 +277,7 @@
     </main>
 
     <!-- Floating WhatsApp B2B Widget (CRO: 70%+ canal de urgencias en México) -->
-    <a href="https://wa.me/525541697780?text=Hola%20Enjoy%20Safety,%20deseo%20cotizar%20equipos%20/%20calibración%20para%20mi%20empresa" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 group flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 sm:px-4 sm:py-3 rounded-full shadow-2xl hover:shadow-emerald-500/50 transition-all duration-300 transform hover:scale-105" title="Chatear por WhatsApp con un Especialista">
+    <a href="https://wa.me/{{ $siteSettings->whatsapp_clean_number ?? '525541697780' }}?text={{ urlencode($siteSettings->whatsapp_message ?? 'Hola Enjoy Safety, deseo cotizar equipos / calibración para mi empresa.') }}" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 group flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 sm:px-4 sm:py-3 rounded-full shadow-2xl hover:shadow-emerald-500/50 transition-all duration-300 transform hover:scale-105" title="Chatear por WhatsApp con un Especialista">
         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         <span class="hidden sm:inline font-bold text-sm tracking-wide">Atención B2B WhatsApp</span>
     </a>
@@ -285,7 +288,10 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
                 <!-- Brand Statement -->
                 <div class="lg:col-span-2 space-y-4">
-                    <img src="{{ asset('images/logo.png') }}" alt="Enjoy Safety Group" class="h-10 w-auto brightness-0 invert">
+                    <img src="{{ $siteSettings->logo_url ?? asset('images/logo.png') }}"
+                         alt="{{ $siteSettings->site_name ?? 'Enjoy Safety Group' }}"
+                         class="w-auto brightness-0 invert"
+                         style="height: {{ min($siteSettings->logo_height ?? 40, 48) }}px;">
                     <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
                         Líderes en detección industrial de gases, sistemas de protección de flama, renta de equipos conectados, calibración acreditada bajo la norma <strong>ISO/IEC 17025</strong> y salud visual empresarial con <strong>Enjoy Vision</strong> en todo México.
                     </p>
@@ -297,6 +303,20 @@
                             ✓ Certificación ANSI Z87.1
                         </span>
                     </div>
+                    @if(!empty($siteSettings->linkedin_url) || !empty($siteSettings->facebook_url))
+                        <div class="pt-3 flex items-center gap-4">
+                            @if(!empty($siteSettings->linkedin_url))
+                                <a href="{{ $siteSettings->linkedin_url }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition" title="LinkedIn">
+                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                </a>
+                            @endif
+                            @if(!empty($siteSettings->facebook_url))
+                                <a href="{{ $siteSettings->facebook_url }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition" title="Facebook">
+                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                                </a>
+                            @endif
+                        </div>
+                    @endif
                 </div>
 
                 <!-- Navigation Services -->
@@ -330,15 +350,19 @@
                     <ul class="space-y-3 text-sm text-slate-400">
                         <li class="flex items-start gap-2">
                             <svg class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-                            <span>Atención a nivel nacional. Laboratorio y oficinas corporativas en México.</span>
+                            <span>{{ $siteSettings->address ?? 'Atención a nivel nacional. Laboratorio y oficinas corporativas en México.' }}</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="w-5 h-5 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                            <a href="tel:+525541697780" class="hover:text-amber-400 transition">+52 55 4169 7780</a>
+                            <a href="tel:{{ $siteSettings->phone1_clean ?? '+525541697780' }}" class="hover:text-amber-400 transition">{{ $siteSettings->phone_1 ?? '+52 55 4169 7780' }}</a>
+                            @if(!empty($siteSettings->phone_2))
+                                <span class="text-slate-600">|</span>
+                                <a href="tel:{{ $siteSettings->phone2_clean }}" class="hover:text-amber-400 transition">{{ $siteSettings->phone_2 }}</a>
+                            @endif
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="w-5 h-5 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            <a href="mailto:contacto@enjoysafety.com.mx" class="hover:text-amber-400 transition">contacto@enjoysafety.com.mx</a>
+                            <a href="mailto:{{ $siteSettings->contact_email ?? 'contacto@enjoysafety.com.mx' }}" class="hover:text-amber-400 transition">{{ $siteSettings->contact_email ?? 'contacto@enjoysafety.com.mx' }}</a>
                         </li>
                     </ul>
                 </div>
@@ -347,7 +371,7 @@
             <!-- Bottom Copyright & Legal Compliance -->
             <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
                 <div>
-                    &copy; {{ date('Y') }} Enjoy Safety Group S.A. de C.V. Todos los derechos reservados.
+                    &copy; {{ date('Y') }} {{ $siteSettings->site_name ?? 'Enjoy Safety Group S.A. de C.V.' }} Todos los derechos reservados.
                 </div>
                 <div class="flex items-center gap-6">
                     <a href="{{ route('privacy') }}" class="hover:text-slate-300 transition">Aviso de Privacidad (LFPDPPP)</a>
